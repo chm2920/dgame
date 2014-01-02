@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Demo</title>
+  <%= stylesheet_link_tag    "style", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-1.10.2.min", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="Top">
+<div class="wapper">
+	<div class="app-info"><a href="#">登录</a>/<a href="#">注册</a>,</div>
+</div>
+</div>
+<div id="Container">
+<div id="PageBody" class="wapper">
+	<div id="Header">
+		
+	</div>
+	<div id="Content" class="clearfix">
+		<%= yield %>
+	</div>
+</div>
+</div>
+<div id="Footer">
+<div class="wapper">
+	<div class="foot">系统回收</div>
+</div>
+</div>
+</body>
+</html>
