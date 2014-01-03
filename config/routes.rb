@@ -4,6 +4,10 @@ Dgame::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'start#index'
+  
+  get '/history' => 'start#history'
+  get '/user-more' => 'start#user-more'
+  get '/round-history' => 'start#round-history'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
