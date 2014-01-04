@@ -1,0 +1,41 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+ul,li,ol{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:none;}
+a{font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:0;padding:0;}
+input,select{margin: 0;padding: 0;-webkit-appearance: none; border-style: none;}
+em,strong,th{font-style:normal;}
+input[type="search"]{-webkit-appearance:none;}
+input[type="submit"]{-webkit-appearance:none;background-color:transparent;}
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button{display:none;}
+
+body{line-height:22px;font-family:Arial,Helvetica,LiHei Pro Medium;font-size:12px;color:#000;-webkit-text-size-adjust:none;}
+a{color:#00a2e9;text-decoration:none;}
+a:hover{color:#00a2e9;}
+
+.clearfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden; }
+* html>body .clearfix { display:inline-block; width:100%; }
+* html .clearfix { height:1%; /* End hide from IE-mac */ } 
+/* ie7 hack*/ 
+*+html .clearfix { min-height:1%; } 
+.clearfix{zoom:1;}
+
+#Top{height:60px;background:#000;}
+#Top h4{padding:20px 0 20px 60px;font-size:24px;color:#FFF;}
+
+#Container{position:absolute;top:60px;bottom:0;left:0;right:0;}
+#PageBody{display:table;width:100%;height:100%;}
+.nav, .main{display:table-cell;vertical-align:top;}
+.nav{width:180px;background:#EEE;border-right:1px solid #CCC;}
+.nav ul{padding:20px 0;}
+.nav ul li{line-height:28px;text-align:center;}
+
+.panel{margin:20px;}
+.com-tb{width:100%;border:1px solid #CCC;border-collapse:collapse;border-spacing:0;}
+.com-tb th, .com-tb td{padding:2px 4px;line-height:22px;border:1px solid #CCC;text-align:center;}
+.com-tb th{background:#EEE;}
+
+.operations{padding:20px 20px 0 20px;}
+.operations li{float:left;display:inline;padding:0 0 0 10px;width:120px;line-height:24px;}

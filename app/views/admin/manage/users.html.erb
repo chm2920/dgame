@@ -1,0 +1,31 @@
+
+<ul class="operations clearfix">
+	<li><a href="#">清除用户</a></li>
+</ul>
+
+<div class="panel">
+<table class="com-tb">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>用户名</th>
+			<th>密码</th>
+			<th>金币</th>
+			<th>注册时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.username %></td>
+			<td><%= user.password %></td>
+			<td><%= user.coins %> $</td>
+			<td><%= user.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+			<td><a href="#">删除</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

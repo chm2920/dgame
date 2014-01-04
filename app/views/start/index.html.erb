@@ -1,15 +1,20 @@
 <div class="main">
 	<div class="game-panel">
-		<div class="round">第100局</div>
+		<% if @sys_info.game_status == "started" %>
+		<div class="round">第<%= @round.no %>局</div>
 		<h4>还剩 <span>00:45</span></h4>
 		<div class="vs">
 			<div class="vs-l"></div>
 			<div class="vs-m">vs</div>
 			<div class="vs-r"></div>
 		</div>
+		<% else %>
+		游戏暂停中
+		<% end %>
 	</div>
+	<% if !@last_round.nil? %>
 	<div class="round-info">
-		<h4>第99局</h4>
+		<h4>第<%= @last_round.no %>局</h4>
 		<div class="his-panel">
 			<div class="his his-l">
 				<ul>
@@ -43,6 +48,9 @@
 			</div>
 		</div>
 	</div>
-	<p class="his-more"><a href="/history">历史&gt;&gt;</a></p>
+	<p class="his-more"><a href="/users/main">历史&gt;&gt;</a></p>
+	<% else %>
+	<div style="height:40px;"></div>
+	<% end %>
 </div>
 <%= render :partial => "/partials/side" %>

@@ -25,8 +25,8 @@ a:hover{color:#00a2e9;}
 .wapper{margin:0 auto;width:1000px;text-align:left;}
 #Top{height:34px;background:url(/assets/nav-bg.png) repeat-x 0 bottom #1b1b1b;text-align:center;}
 .app-info{float:right;display:inline;line-height:34px;color:#FFF;}
-.app-info b{}
-.app-info span{}
+.app-info b{font-weight:normal;color:#FF0000;}
+.app-info span{color:#FF0000;}
 .app-info a{margin:0 4px;color:#00a2e9;}
 .app-info a:hover{color:#00a2e9;}
 
@@ -73,7 +73,9 @@ a:hover{color:#00a2e9;}
 .rank-list li span{float:right;display:inline;width:60px;}
 
 
-#Footer{padding:25px 0 10px;background-image:linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,0)), url(/assets/bg-footer-noise.jpg);background-repeat:repeat-x, repeat;background-size:100px 15px, 140px 140px;}
+#Footer{padding:25px 0 10px;
+background-image:-webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.0)), url(/assets/bg-footer-noise.jpg);
+background-image:linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,0)), url(/assets/bg-footer-noise.jpg);background-repeat:repeat-x, repeat;background-size:100px 15px, 140px 140px;}
 .foot{text-align:center;color:#FFF;}
 
 .history-pagination{padding:20px 0;}
@@ -82,3 +84,15 @@ a:hover{color:#00a2e9;}
 .user-rounds li{padding:2px 20px;}
 .user-rounds li a{float:right;display:inline;}
 .user-rounds li span{float:right;display:inline;width:260px;}
+
+.reg-login{display:table;margin:100px auto 300px;width:800px;}
+.reg-login h4{text-align:center;font-size:24px;}
+.login, .reg{display:table-cell;}
+.login{}
+.reg{border-left:1px solid #CCC;}
+.reg-login table{margin:40px auto 0;width:300px;}
+.reg-login td{padding:6px 0;line-height:24px;}
+.reg-login .label{padding-right:6px;width:60px;text-align:right;}
+.reg-login .ipt{padding:4px 4px;width:180px;height:18px;line-height:18px;border:1px solid #CCC;}
+.reg-login .sbt{display:block;padding:4px 30px;line-height:18px;border:1px solid #CCC;background:#EEE;cursor:pointer;}
+

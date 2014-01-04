@@ -1,0 +1,38 @@
+
+<ul class="operations clearfix">
+	<li><a href="/admin/sys_reset">系统重置</a></li>
+</ul>
+
+<div class="panel">
+<table class="com-tb">
+	<thead>
+		<tr>
+			<th>游戏状态</th>
+			<th>当前局数</th>
+			<th>开始时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<% case @sys_info.game_status %>
+				<% when "paused" %>
+				<font style="color:#FF0000;">暂停</font>
+				<% when "started" %>
+				<font style="color:green;">进行中</font>
+				<% end %>
+			</td>
+			<td><%= @sys_info.round_no %></td>
+			<td><%= @sys_info.started_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+			<td>
+				<% if @sys_info.game_status == "paused" %>
+				<a href="/admin/start_game">开始游戏</a>
+				<% else %>
+				<a href="/admin/pause_game">暂停游戏</a>
+				<% end %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>

@@ -1,20 +1,25 @@
 <div class="side">
 	<div class="user-info">
 		<h4>我的账户</h4>
-		<div class="user-coins">总币数: 884$</div>
+		<div class="user-coins">总币数: <%= @user.coins %>$</div>
 		<ul>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
-			<li><span>+2$</span>第99局</li>
+			<% @recent_rounds.each do |round_detail| %>
+			<% round = round_detail.round %>
+			<li>
+				<% if round.re != '' %>
+					<% if round.re == round_detail.lr %>
+					<span>+<%= round_detail.coins %>$</span>
+					<% else %>
+					<span>-<%= round_detail.coins %>$</span>
+					<% end %>
+				<% else %>
+					进行中
+				<% end %>
+				第<%= round.no %>局
+			</li>
+			<% end %>
 		</ul>
-		<p><a href="/user-more">More..</a></p>
+		<p><a href="/users/main">More..</a></p>
 	</div>
 	<div class="ranks">
 		<ul class="tabs clearfix">

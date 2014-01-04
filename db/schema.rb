@@ -11,15 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102113716) do
+ActiveRecord::Schema.define(version: 20140104152714) do
+
+  create_table "round_details", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "round_id"
+    t.string   "lr"
+    t.integer  "coins"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "rounds", force: true do |t|
-    t.string "no"
+    t.integer "no"
+  end
+
+  create_table "sysinfos", force: true do |t|
+    t.string   "round_no"
+    t.datetime "started_at"
+    t.string   "game_status"
   end
 
   create_table "users", force: true do |t|
-    t.string "username"
-    t.string "password"
+    t.string   "username"
+    t.string   "password"
+    t.integer  "coins"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

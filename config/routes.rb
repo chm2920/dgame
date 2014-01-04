@@ -5,9 +5,6 @@ Dgame::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'start#index'
   
-  get '/history' => 'start#history'
-  get '/user-more' => 'start#user-more'
-  get '/round-history' => 'start#round-history'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -16,19 +13,29 @@ Dgame::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :rounds do
+    member do
+      get 'show'
+    end
+    
+    collection do
+      get 'index'
+    end
+  end
 
   # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :users do
+    member do
+    end
+
+    collection do
+      get 'login'
+      get 'main'
+      get 'logout'
+      post 'login_rst'
+      post 'reg_rst'
+    end
+  end
 
   # Example resource route with sub-resources:
   #   resources :products do
@@ -51,6 +58,15 @@ Dgame::Application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
+  namespace :admin do
+    get "main" => "manage#main"
+    get "start_game" => "manage#start_game"
+    get "pause_game" => "manage#pause_game"
+    get "sys_reset" => "manage#sys_reset"
+    
+    get "users" => "manage#users"
+    get "rounds" => "manage#rounds"
+  end
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

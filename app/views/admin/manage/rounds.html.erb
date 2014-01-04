@@ -1,0 +1,27 @@
+
+<ul class="operations clearfix">
+	<li><a href="#">清除纪录</a></li>
+</ul>
+
+<div class="panel">
+<table class="com-tb">
+	<thead>
+		<tr>
+			<th>局数</th>
+			<th>L</th>
+			<th>R</th>
+			<th>详细</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @rounds.each do |round| %>
+		<tr>
+			<td><%= round.no %></td>
+			<td><%= round.ls.count %></td>
+			<td><%= round.rs.count %></td>
+			<td><a href="#">详细</a></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

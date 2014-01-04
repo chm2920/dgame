@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Demo</title>
+  <%= stylesheet_link_tag    "admin", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "jquery-1.10.2.min", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="Top">
+	<h4>后台管理</h4>
+</div>
+<div id="Container" class="clearfix">
+<div id="PageBody">
+	<div class="nav">
+		<ul>
+			<li><a href="/admin/main">系统概要</a></li>
+			<li><a href="/admin/users">注册用户</a></li>
+			<li><a href="/admin/rounds">每局记录</a></li>
+		</ul>
+	</div>
+	<div class="main">
+		<%= yield %>
+	</div>
+</div>
+</div>
+</body>
+</html>

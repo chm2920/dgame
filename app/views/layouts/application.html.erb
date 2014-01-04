@@ -9,7 +9,12 @@
 <body>
 <div id="Top">
 <div class="wapper">
-	<div class="app-info"><a href="#">登录</a>/<a href="#">注册</a>，当前XX人在线，当前时间 2014-1-4 12:12:12</div>
+	<div class="app-info">
+		<% if session[:username].nil? %>
+		<a href="/users/login">登录</a>/<a href="/users/login">注册</a>
+		<% else %>
+		<b><%= session[:username] %></b> 欢迎，<a href="/users/logout">退出</a>
+		<% end %><!--，当前XX人在线，当前时间 2014-1-4 12:12:12--></div>
 </div>
 </div>
 <div id="Container">
