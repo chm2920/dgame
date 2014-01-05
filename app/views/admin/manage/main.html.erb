@@ -4,12 +4,19 @@
 </ul>
 
 <div class="panel">
+<% if @sys_info.game_status == "stopped" %>
+<% action = "/admin/start_game" %>
+<% else %>
+<% action = "/admin/stop_game" %>
+<% end %>
+<%= form_tag action do %>
 <table class="com-tb">
 	<thead>
 		<tr>
 			<th>游戏状态</th>
 			<th>当前局数</th>
 			<th>开始时间</th>
+			<th>间隔时间</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -17,22 +24,26 @@
 		<tr>
 			<td>
 				<% case @sys_info.game_status %>
+				<% when "stopped" %>
+				<font style="color:#FF0000;">停止</font>
 				<% when "paused" %>
-				<font style="color:#FF0000;">暂停</font>
+				<font style="color:orange;">暂停</font>
 				<% when "started" %>
 				<font style="color:green;">进行中</font>
 				<% end %>
 			</td>
 			<td><%= @sys_info.round_no %></td>
 			<td><%= @sys_info.started_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+			<td><input type="text" name="timeout" value="<%= @sys_info.timeout %>" class="ipt" style="width:60px;text-align:center;" /></td>
 			<td>
-				<% if @sys_info.game_status == "paused" %>
-				<a href="/admin/start_game">开始游戏</a>
+				<% if @sys_info.game_status == "stopped" %>
+				<input type="submit" name="start_game" value="开始游戏" class="sbt" />
 				<% else %>
-				<a href="/admin/pause_game">暂停游戏</a>
+				<input type="submit" name="stop_game" value="停止游戏" class="sbt" />
 				<% end %>
 			</td>
 		</tr>
 	</tbody>
 </table>
+<% end %>
 </div>

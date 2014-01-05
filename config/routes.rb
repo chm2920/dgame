@@ -5,6 +5,7 @@ Dgame::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'start#index'
   
+  post '/p' => 'start#p'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -60,8 +61,8 @@ Dgame::Application.routes.draw do
 
   namespace :admin do
     get "main" => "manage#main"
-    get "start_game" => "manage#start_game"
-    get "pause_game" => "manage#pause_game"
+    post "start_game" => "manage#start_game"
+    post "stop_game" => "manage#stop_game"
     get "sys_reset" => "manage#sys_reset"
     
     get "users" => "manage#users"

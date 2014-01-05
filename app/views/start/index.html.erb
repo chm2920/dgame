@@ -1,8 +1,126 @@
+<script type="text/javascript">
+var username = '<%= session[:username] %>'
+	, game_status = '<%= @sys_info.game_status %>'
+	, time_left = parseInt('<%= @sys_info.started_at + 4.minutes - Time.now %>')
+	, time_tag = new Date();
+	
+$(function(){
+	time_left = time_left - parseInt((new Date().getTime() - time_tag.getTime()) / 1000);
+	var timer;
+	
+	function setTime(){
+		if(time_left == 0){
+			clearTimeout(timer);
+			location.reload();
+		} else {
+			timer = setTimeout(function(){
+				var f_time = []
+					, mins = parseInt(time_left / 60)
+					, secs = time_left % 60;
+				if(mins < 10){
+					f_time.push('0');
+				}
+				f_time.push(mins);
+				f_time.push(':');
+				if(secs < 10){
+					f_time.push('0');
+				}
+				f_time.push(secs);
+				if(game_status == 'started'){
+					$('#timeleft').html('还剩 <span>' + f_time.join('') + '</span>');
+				} else {
+					$('#timeleft').html('<span>' + f_time.join('') + '</span> 后开始');
+				}
+				time_left -= 1;
+				setTime();
+			}, 1000);
+		}
+	}
+	setTime();
+	
+	if(game_status == 'started'){
+	
+		var lr = '';
+		$('.vs-l').click(function(){
+			lr = 'l';
+			$('.pop-mask').show();
+			$('#pop').show();
+		});
+		$('.vs-r').click(function(){
+			lr = 'r';
+			$('.pop-mask').show();
+			$('#pop').show();
+		});
+		
+		$('.select-coins').click(function(){
+			$(this).parent().find('ul').show();
+		});
+		
+		$('#pop li').hover(function(){
+			$(this).addClass('hover');
+		}, function(){
+			$(this).removeClass('hover');
+		}).click(function(){
+			$('#pop li').removeClass('cur');
+			$(this).addClass('cur');
+			$('#pop ul').hide();
+			$('.select-coins').text($(this).text());
+		});
+		
+		$('.select-submit').click(function(){
+			$.ajax({
+				url: '/p',
+				method: 'post',
+				data: {
+					'username' : username,
+					'lr' : lr,
+					'coins': parseInt($('.select-coins').text())
+				},
+				success: function(data){
+					if(data.code == '0'){
+						$('.pop-mask').hide();
+						$('#pop').hide();
+					} else{
+						alert(data.msg);
+					}
+				}
+			});
+		});
+		$('#pop-cls').click(function(){
+			$('.pop-mask').hide();
+			$('#pop').hide();
+		});
+		$('.pop-mask').click(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+		});
+		
+	}
+});
+</script>
+<div class="pop-mask" style="display:none;"></div>
+<div id="pop" class="pop-box" style="display:none;">
+	<h4>投币数</h4>
+	<div class="select-panel">
+		<div class="select-coins">1 $</div>
+		<div class="select-submit">确定</div>
+		<ul style="display:none;">
+			<% 1.upto @user.coins do |i| %>
+			<% if i == 1 %>
+			<li class="cur"><%= i %> $</li>
+			<% else %>
+			<li><%= i %> $</li>
+			<% end %>
+			<% end %>
+		</ul>
+	</div>
+	<p><a href="#" id="pop-cls">关闭</a></p>
+</div>
 <div class="main">
 	<div class="game-panel">
-		<% if @sys_info.game_status == "started" %>
+		<% if @sys_info.game_status != "stopped" %>
 		<div class="round">第<%= @round.no %>局</div>
-		<h4>还剩 <span>00:45</span></h4>
+		<h4 id="timeleft"></h4>
 		<div class="vs">
 			<div class="vs-l"></div>
 			<div class="vs-m">vs</div>
@@ -18,37 +136,21 @@
 		<div class="his-panel">
 			<div class="his his-l">
 				<ul>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
+					<% @last_round.ls.each do |round_detail| %>
+					<li><span><%= round_detail.coins %> $<% if @last_round.re == 'l' %> + <%= round_detail.coins %> $<% end %></span><%= round_detail.user.username %></li>
+					<% end %>
 				</ul>
 			</div>
 			<div class="his his-r">
 				<ul>
-					<li><span>1$ + 1$</span>xxx</li>
+					<% @last_round.rs.each do |round_detail| %>
+					<li><span><%= round_detail.coins %> $<% if @last_round.re == 'r' %> + <%= round_detail.coins %> $<% end %></span><%= round_detail.user.username %></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<p class="his-more"><a href="/users/main">历史&gt;&gt;</a></p>
+	<p class="his-more"><a href="/rounds">历史&gt;&gt;</a></p>
 	<% else %>
 	<div style="height:40px;"></div>
 	<% end %>
