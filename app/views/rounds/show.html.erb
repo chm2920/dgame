@@ -1,39 +1,23 @@
 <div class="main">
 	<div class="round-info">
-		<h4>第99局</h4>
+		<h4>第<%= @round.no %>局</h4>
 		<div class="his-panel">
 			<div class="his his-l">
 				<ul>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
-					<li><span>1$ + 1$</span>xxx</li>
+					<% @round.ls.each do |round_detail| %>
+					<li><span><%= round_detail.coins %> $<% if @round.re == 'l' %> + <%= round_detail.coins %> $<% end %></span><%= round_detail.user.username %></li>
+					<% end %>
 				</ul>
 			</div>
 			<div class="his his-r">
 				<ul>
-					<li><span>1$ + 1$</span>xxx</li>
+					<% @round.rs.each do |round_detail| %>
+					<li><span><%= round_detail.coins %> $<% if @round.re == 'r' %> + <%= round_detail.coins %> $<% end %></span><%= round_detail.user.username %></li>
+					<% end %>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<p style="padding:20px 66px 20px 0;text-align:right;"><a href="/user-more">返回</a></p>
+	<p style="padding:20px 66px 20px 0;text-align:right;"><a href="/users/main">返回</a></p>
 </div>
 <%= render :partial => "/partials/side" %>

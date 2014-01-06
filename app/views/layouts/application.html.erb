@@ -10,11 +10,15 @@
 <div id="Top">
 <div class="wapper">
 	<div class="app-info">
+		<div class="sys-status">
 		<% if session[:username].nil? %>
 		<a href="/users/login">登录</a>/<a href="/users/login">注册</a>
 		<% else %>
 		<b><%= session[:username] %></b> 欢迎，<a href="/users/logout">退出</a>
-		<% end %><!--，当前XX人在线，当前时间 2014-1-4 12:12:12--></div>
+		<% end %><!--，当前XX人在线，当前时间 2014-1-4 12:12:12-->
+		</div>
+		<a href="/">首页</a>
+	</div>
 </div>
 </div>
 <div id="Container">

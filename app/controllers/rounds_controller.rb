@@ -1,11 +1,13 @@
 class RoundsController < ApplicationController
   
+  before_action :auth_user
+  
   def index
-    if session[:username].nil?
-      redirect_to "/users/login"
-    else
-      @user = User.where(username: session[:username]).first
-      @recent_rounds = @user.recent_rounds
-    end
+    @rounds = Round.paginate :page => params[:page], :per_page => 2, :conditions => ["re != ''"], :order => "id desc"
   end
+  
+  def show
+    @round = Round.find(params[:id])
+  end
+  
 end

@@ -3,16 +3,12 @@ class StartController < ApplicationController
   
   skip_before_filter :verify_authenticity_token
   
+  before_action :auth_user, :only => [:index]
+  
   def index
-    if session[:username].nil?
-      redirect_to "/users/login"
-    else
-      @user = User.where(username: session[:username]).first
-      @recent_rounds = @user.recent_rounds
-      @sys_info = Sysinfo.first
-      @round = Round.last
-      @last_round = Round.where(no: @round.no - 1).first
-    end
+    @sys_info = Sysinfo.first
+    @round = Round.last
+    @last_round = Round.where(no: @round.no - 1).first
   end
   
   def p

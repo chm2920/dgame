@@ -1,6 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   
+  before_action :auth_user, :only => :main
+  
   def login
     
   end
@@ -44,13 +46,7 @@ class UsersController < ApplicationController
   end
   
   def main
-    if session[:username].nil?
-      redirect_to "/users/login"
-    else
-      @user = User.where(username: session[:username]).first
-      @recent_rounds = @user.recent_rounds
-      @round_details = @user.round_details
-    end
+    @round_details = @user.round_details.paginate :page => params[:page], :per_page => 30, :order => "id desc"
   end
   
 end

@@ -1,32 +1,23 @@
 <div class="main">
-	<div class="user-coins">总币数: 884$</div>
+	<div class="user-coins">总币数: <%= @user.coins %>$</div>
 	<ul class="user-rounds">
-		<li><a href="/rounds/1">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
-		<li><a href="/round-history">详细</a><span>+2$</span>第99局</li>
+		<% @round_details.each do |round_detail| %>
+		<% round = round_detail.round %>
+		<li>
+			<a href="/rounds/<%= round.id %>">详细</a>
+			<% if round.re != '' %>
+				<% if round.re == round_detail.lr %>
+				<span>+<%= round_detail.coins %>$</span>
+				<% else %>
+				<span>-<%= round_detail.coins %>$</span>
+				<% end %>
+			<% else %>
+				<span>进行中 <%= round_detail.coins %></span>
+			<% end %>
+			第<%= round.no %>局
+		</li>
+		<% end %>
 	</ul>
-	<div class="user-rounds-pagination"></div>
+	<%= will_paginate @round_details, :class => "history-pagination" %>
 </div>
 <%= render :partial => "/partials/side" %>

@@ -32,11 +32,13 @@ class Admin::ManageController < ApplicationController
         @round.save
         
         @round.round_details.each do |round_detail|
+          user = round_detail.user
           if round_detail.lr == @round.re
-            user = round_detail.user
             user.coins += round_detail.coins
-            user.save
+          else
+            user.coins -= round_detail.coins
           end
+          user.save
         end
         
         @round = Round.new
