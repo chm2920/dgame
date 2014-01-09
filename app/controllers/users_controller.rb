@@ -1,10 +1,12 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   
+  skip_before_filter :verify_authenticity_token, :only => [:login_rst, :reg_rst]
+  
   before_action :auth_user, :only => :main
   
   def login
-    
+    @sys_info = Sysinfo.first
   end
   
   def login_rst

@@ -16,7 +16,7 @@
 			<th>游戏状态</th>
 			<th>当前局数</th>
 			<th>开始时间</th>
-			<th>间隔时间</th>
+			<th>回收硬币</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -34,7 +34,7 @@
 			</td>
 			<td><%= @sys_info.round_no %></td>
 			<td><%= @sys_info.started_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-			<td><input type="text" name="timeout" value="<%= @sys_info.timeout %>" class="ipt" style="width:60px;text-align:center;" /></td>
+			<td><%= @sys_info.recycle_coins %></td>
 			<td>
 				<% if @sys_info.game_status == "stopped" %>
 				<input type="submit" name="start_game" value="开始游戏" class="sbt" />

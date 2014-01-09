@@ -6,7 +6,6 @@ class StartController < ApplicationController
   before_action :auth_user, :only => [:index]
   
   def index
-    @sys_info = Sysinfo.first
     @round = Round.last
     @last_round = Round.where(no: @round.no - 1).first
   end

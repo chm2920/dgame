@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140104152714) do
     t.string   "round_no"
     t.datetime "started_at"
     t.string   "game_status"
-    t.string   "timeout"
+    t.integer  "recycle_coins"
   end
 
   create_table "users", force: true do |t|

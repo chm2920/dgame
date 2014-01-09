@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     else
       @user = User.where(username: session[:username]).first
       @recent_rounds = @user.recent_rounds
+      @sys_info = Sysinfo.first
     end
   end
   

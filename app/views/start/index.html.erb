@@ -1,7 +1,11 @@
 <script type="text/javascript">
 var username = '<%= session[:username] %>'
 	, game_status = '<%= @sys_info.game_status %>'
+	<% if @sys_info.game_status == 'started' %>
 	, time_left = parseInt('<%= @sys_info.started_at + 4.minutes - Time.now %>')
+	<% else %>
+	, time_left = parseInt('<%= @sys_info.started_at + 1.minutes - Time.now %>')
+	<% end %>
 	, time_tag = new Date();
 	
 $(function(){

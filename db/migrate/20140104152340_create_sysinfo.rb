@@ -4,9 +4,9 @@ class CreateSysinfo < ActiveRecord::Migration
       t.string :round_no
       t.datetime :started_at
       t.string :game_status
-      t.string :timeout
+      t.integer :recycle_coins
     end
     
-    Sysinfo.create(:round_no => 1, :started_at => Time.now, :game_status => "stopped", :timeout => "240s")
+    Sysinfo.create(:round_no => 1, :started_at => Time.now, :game_status => "stopped", :recycle_coins => "0")
   end
 end
